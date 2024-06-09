@@ -14,6 +14,7 @@ def main():
     magazine_category = input("Enter magazine category: ")
     article_title = input("Enter article title: ")
     article_content = input("Enter article content: ")
+    
 
     # Connect to the database
     conn = get_db_connection()
@@ -60,7 +61,7 @@ def main():
 
     print("\nAuthors:")
     for author in authors:
-        print(Author(author["id"], author["name"]))
+        print(Author(author["name"]))
 
     print("\nArticles:")
     for article in articles:
