@@ -3,9 +3,10 @@ from models.author import Author
 from models.article import Article
 from models.magazine import Magazine
 
+
 class TestModels(unittest.TestCase):
     def test_author_creation(self):
-        author = Author(1, "John Doe")
+        author = Author("John Doe")
         self.assertEqual(author.name, "John Doe")
 
     def test_article_creation(self):
@@ -13,8 +14,9 @@ class TestModels(unittest.TestCase):
         self.assertEqual(article.title, "Test Title")
 
     def test_magazine_creation(self):
-        magazine = Magazine(1, "Tech Weekly")
-        self.assertEqual(magazine.name, "Tech Weekly")
+        cursor = None
+        magazine = Magazine(cursor, "Tech Weekly", "Technology")
+        self.assertEqual(magazine.name, "Technology")
 
 if __name__ == "__main__":
     unittest.main()

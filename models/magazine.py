@@ -1,18 +1,20 @@
-import sqlite3
+from models.__init__ import CURSOR, CONN
 from models.author import Author
 
 class Magazine:
     def __init__(self, cursor, id=None,  name=None, category=None):
-        self.conn = sqlite3.connect('magazines.db')
-        self.cursor = self.conn.cursor()
-        self.cursor.execute('''CREATE TABLE IF NOT EXISTS magazines
-                             (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, category TEXT)''')
-        self.conn.commit()
+        self.conn = CONN
+        self.cursor = CURSOR
         self._id = None
         self._name = None
         self._category = None
         self.name = name
         self.category = category
+
+    def create_magazines_table(self):
+        self.cursor.execute('''CREATE TABLE IF NOT EXISTS magazines
+                         (id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT NOT NULL, category TEXT)''')
+        self.conn.commit()
 
     @property
     def id(self):
